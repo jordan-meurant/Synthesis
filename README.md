@@ -46,3 +46,17 @@ intéractions possible au sein de l'application. Afin d'**intéragir** avec les 
 réalisées vous pouvez clicquer sur ce [lien](https://www.figma.com/proto/zMKzLaDnktYNdJXcdXekuK/Synthesis?node-id=5%3A159&scaling=scale-down&page-id=0%3A1&starting-point-node-id=5%3A159).
 
 ![site map](resourcesREADME/siteMap.png)
+
+## Fonctionnalités
+- En tant qu'**anonyme**, je peux me connecter via l'application.
+- En tant qu'**anonyme**, je peux me connecter à l'application via **Google**.
+- En tant qu'**utilisateur connecté**, je peux rejoindre un groupe.
+- En tant qu'**utilisateur connecté**, je peux créer groupe.
+- En tant qu'**utilisateur connecté**, je peux accéder au contenu d'un groupe.
+- En tant qu'**utilisateur connecté**, je peux partager le code du groupe.
+- En tant qu'**utilisateur connecté**, je peux consulter la liste des membres du groupe.
+- En tant qu'**utilisateur connecté**, je peux ajouter un cours à un groupe.
+- En tant qu'**utilisateur connecté**, je peux ajouter/consulter une ressource pour un cours.
+- En tant qu'**utilisateur connecté**, je peux ajouter/consulter une note pour un cours.
+- En tant qu'**utilisateur connecté**, je peux ajouter/consulter une photo pour un cours.
+- En tant qu'**utilisateur connecté**, je peux poser une question via le chat du cours dédié.
