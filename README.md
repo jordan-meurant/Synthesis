@@ -60,3 +60,5 @@ réalisées vous pouvez clicquer sur ce [lien](https://www.figma.com/proto/zMKzL
 - En tant qu'**utilisateur connecté**, je peux ajouter/consulter une note pour un cours.
 - En tant qu'**utilisateur connecté**, je peux ajouter/consulter une photo pour un cours.
 - En tant qu'**utilisateur connecté**, je peux poser une question via le chat du cours dédié.
+- En tant qu'**utilisateur connecté**, je peux télécharger une ressource d'un cours.
+- En tant qu'**utilisateur connecté**, j'ai accès aux ressources téléchargé en mode hors ligne.
