@@ -43,7 +43,7 @@ l'application via ce [lien](https://www.figma.com/file/zMKzLaDnktYNdJXcdXekuK/Sy
 ## Site Map
 La carte de l'application a également été réalisé avec [Figma](https://www.figma.com). Voici ci-dessous l'ensemble des
 intéractions possible au sein de l'application. Afin d'**intéragir** avec les maquettes
-réalisées vous pouvez clicquer sur ce [lien](https://www.figma.com/proto/zMKzLaDnktYNdJXcdXekuK/Synthesis?node-id=5%3A159&scaling=scale-down&page-id=0%3A1&starting-point-node-id=5%3A159).
+réalisées vous pouvez clicker sur ce [lien](https://www.figma.com/proto/zMKzLaDnktYNdJXcdXekuK/Synthesis?node-id=5%3A159&scaling=scale-down&page-id=0%3A1&starting-point-node-id=5%3A159).
 
 ![site map](resourcesREADME/siteMap.png)
 
@@ -60,3 +60,17 @@ réalisées vous pouvez clicquer sur ce [lien](https://www.figma.com/proto/zMKzL
 - En tant qu'**utilisateur connecté**, je peux ajouter/consulter une note pour un cours.
 - En tant qu'**utilisateur connecté**, je peux ajouter/consulter une photo pour un cours.
 - En tant qu'**utilisateur connecté**, je peux poser une question via le chat du cours dédié.
+
+
+Note : 
+liens utils :
+- https://pub.dev/packages/dropdown_button2 (openWithLongPress)
+- https://pub.dev/packages/another_flushbar (flush_bar)
+- https://www.flutterbeads.com/flutter-internet-connection-checker/ (wifi?)
+
+
+Note : 
+Download -> tous les fichiers pdf qu'on peut télécharger
+
+
+firebase cloud storage
