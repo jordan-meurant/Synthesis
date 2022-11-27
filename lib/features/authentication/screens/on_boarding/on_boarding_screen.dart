@@ -31,11 +31,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           child: Text(
             'ou',
             style: TextStyle(
-              fontFamily: "satisfy",
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-              color: CupertinoColors.systemGrey4
-            ),
+                fontFamily: "satisfy",
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                color: CupertinoColors.systemGrey4),
           ),
         ),
         Flexible(
@@ -115,10 +114,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               })
             },
             pages: pages,
-            slideIconWidget: const Icon(
-              Icons.arrow_back_ios,
-            ),
+            slideIconWidget: const Icon(Icons.arrow_back_ios),
             enableSideReveal: true,
+            enableLoop: true,
           ),
           Positioned(
               top: 50,
@@ -205,9 +203,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                           )
                         ],
                       )),
-                  Row(mainAxisAlignment: MainAxisAlignment.center,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("Pas de compte ?", style: kFormText,),
+                      const Text(
+                        "Pas de compte ?",
+                        style: kFormText,
+                      ),
                       Padding(
                         padding: const EdgeInsets.only(left: 5),
                         child: Link("Crée-le !", () {

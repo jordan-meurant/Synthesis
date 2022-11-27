@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:synthesis/features/authentication/screens/widgets/or_divider_widget.dart';
 import 'package:synthesis/links/link.dart';
 
@@ -33,6 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
       decoration: TextDecoration.none,
     );
     return Scaffold(
+      backgroundColor: CupertinoColors.darkBackgroundGray,
       body: SafeArea(
         minimum: const EdgeInsets.symmetric(horizontal: 25),
         child: SingleChildScrollView(

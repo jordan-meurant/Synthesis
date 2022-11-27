@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:synthesis/utils/routes.dart';
 import '../widgets/or_divider_widget.dart';
 import 'forget_password_btn_widget.dart';
 
@@ -33,7 +34,7 @@ class ForgetPasswordScreen extends StatelessWidget {
               title: "Email",
               subTitle: "Réinitialisation par email",
               icon: FontAwesomeIcons.paperPlane,
-              onTap: () {},
+              onTap: () {Navigator.pushNamed(context, resetPasswordByEmailScreen);},
             ),
             const OrDividerWidget(),
             ForgetPasswordBtnWidget(

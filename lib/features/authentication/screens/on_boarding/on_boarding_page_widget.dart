@@ -10,7 +10,6 @@ class OnBoardingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
     return Container(
       width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 50),
@@ -18,7 +17,7 @@ class OnBoardingPage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Image.asset(model.image, height: height * 0.2,),
+          Image.asset(model.image, height: MediaQuery.of(context).size.height * 0.2),
           Column(
             children: [
               Text(

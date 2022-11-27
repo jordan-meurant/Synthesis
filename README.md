@@ -69,6 +69,7 @@ liens utils :
 - https://pub.dev/packages/dropdown_button2 (openWithLongPress)
 - https://pub.dev/packages/another_flushbar (flush_bar)
 - https://www.flutterbeads.com/flutter-internet-connection-checker/ (wifi?)
+- https://pub.dev/packages/avatars/install (avatar)
 
 
 Note : 

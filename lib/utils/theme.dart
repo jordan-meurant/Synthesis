@@ -12,7 +12,7 @@ class TAppTheme {
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
     fontFamily: "patrick",
-    colorScheme:  ColorScheme.light(
+    colorScheme:  const ColorScheme.light(
       primary: kPrimaryColor,
     ),
     textTheme: TTextTheme.lightTextTheme,
@@ -23,12 +23,12 @@ class TAppTheme {
   );
 
   static ThemeData darkTheme = ThemeData(
+    scaffoldBackgroundColor: CupertinoColors.darkBackgroundGray,
     primaryColorDark: CupertinoColors.systemRed,
       brightness: Brightness.dark,
       fontFamily: "patrick",
-      colorScheme:  ColorScheme.dark(
+      colorScheme:  const ColorScheme.dark(
         primary: kPrimaryColor,
-
       ),
       textTheme: TTextTheme.darkTextTheme,
     iconTheme: const IconThemeData(
