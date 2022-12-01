@@ -6,8 +6,10 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_card/image_card.dart';
 import 'package:synthesis/constants/colors.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:synthesis/features/group/group_selection_btn_widget.dart';
+
+import '../authentication/screens/forget_password/forget_password_btn_widget.dart';
+import '../authentication/screens/widgets/or_divider_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -39,15 +41,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ElevatedButton(
-                      onPressed: () {
-                        Scaffold.of(context).openDrawer();
-                      },
-                      child: const Icon(FontAwesomeIcons.bars)),
-                  Container(width:150, height:100,child: const GroupSelectionBtnWidget()),
-                  Avatar(sources: [
-                    NetworkSource(
-                        "https://learning.oilab.in/public/img/Flutter-course-in-jodhpur.png")
-                  ], name: "jordan", shape: AvatarShape.circle(25)),
+                    onPressed: () {},
+                    style:
+                        ElevatedButton.styleFrom(shape: const CircleBorder()),
+                    child: const Icon(FontAwesomeIcons.circlePlus),
+                  ),
+                  const GroupSelectionBtnWidget(),
+                  Avatar(
+                      sources: [GitHubSource("jordan-meurant")],
+                      name: "jordan",
+                      shape: AvatarShape.circle(25)),
                 ],
               ),
               Text(
@@ -129,13 +132,97 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               CarouselSlider(
                 items: avatars
-                    .map((avatar) => Avatar(
-                          sources: [
-                            NetworkSource(avatar)
-                          ],
-                          name: avatar,
-                          shape: AvatarShape.rectangle(75, 75,
-                              const BorderRadius.all(Radius.circular(15))),
+                    .map((avatar) => GestureDetector(
+                          onTap: () {
+                            showModalBottomSheet(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15)),
+                                context: context,
+                                builder: (context) => Container(
+                                      padding: const EdgeInsets.all(30),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Wrap(
+                                            spacing: 10,
+                                            children: [
+                                              Avatar(
+                                                  sources: [GitHubSource("jordan-meurant")],
+                                                  name: "jordan",
+                                                  shape: AvatarShape.circle(30)),
+                                              Text("Jordan Meurant",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline3),
+                                            ],
+                                          ),
+                                          Text(
+                                            "Contactes ton camarade via mail ou sonnes lui directement !",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline5,
+                                          ),
+                                          Column(
+                                            children: [
+                                              ElevatedButton(
+                                                  onPressed: () {},
+                                                  child: Row(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: const [
+                                                      Icon(FontAwesomeIcons.envelope),
+                                                      Padding(
+                                                        padding: EdgeInsets.only(left: 10),
+                                                        child: Text(
+                                                          'jordan.meurant@student.hepl.be',
+                                                          style: TextStyle(
+                                                              fontSize: 20,
+                                                              color: Colors.white,
+                                                              fontWeight: FontWeight.w500,
+                                                              fontFamily: 'patrick'),
+                                                        ),
+                                                      )
+                                                    ],
+                                                  )),
+                                              OutlinedButton(
+                                                  style: OutlinedButton.styleFrom(
+                                                      side:  BorderSide(
+                                                          color: kPrimaryColor)),
+                                                  onPressed: () {},
+                                                  child: Row(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: const [
+                                                      Icon(
+                                                        // <-- Icon
+                                                        FontAwesomeIcons.phone,
+                                                        color: kPrimaryColor,
+                                                      ),
+                                                      Padding(
+                                                        padding: EdgeInsets.only(left: 10),
+                                                        child: Text(
+                                                          '0471589262',
+                                                          style: TextStyle(
+                                                              color: kPrimaryColor,
+                                                              fontSize: 25,
+                                                              fontWeight: FontWeight.w500,
+                                                              fontFamily: 'patrick'),
+                                                        ),
+                                                      )
+                                                    ],
+                                                  )),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ));
+                          },
+                          child: Avatar(
+                            sources: [NetworkSource(avatar)],
+                            name: avatar,
+                            shape: AvatarShape.rectangle(75, 75,
+                                const BorderRadius.all(Radius.circular(15))),
+                          ),
                         ))
                     .toList(),
                 options: CarouselOptions(
@@ -148,7 +235,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ),
               ),
-
             ],
           ),
         ),

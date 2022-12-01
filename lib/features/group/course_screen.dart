@@ -35,11 +35,6 @@ class _CourseScreenState extends State<CourseScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ElevatedButton(
-                      onPressed: () {
-                        Scaffold.of(context).openDrawer();
-                      },
-                      child: const Icon(FontAwesomeIcons.bars)),
-                  ElevatedButton(
                       onPressed: () {},
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -93,7 +88,7 @@ class _CourseScreenState extends State<CourseScreen> {
                       )
                     ],
                   )),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
               Row(
                 children: [
                   Text(
@@ -103,6 +98,7 @@ class _CourseScreenState extends State<CourseScreen> {
                   Image.asset("assets/icons/icon-add-file.png", height: 50),
                 ],
               ),
+              const SizedBox(height: 10),
               CarouselSlider(
                 items: [
                   Column(
@@ -156,6 +152,7 @@ class _CourseScreenState extends State<CourseScreen> {
                   Image.asset("assets/icons/icon-add-notes.png", height: 50),
                 ],
               ),
+              const SizedBox(height: 10),
               CarouselSlider(
                 items: [
                   Column(

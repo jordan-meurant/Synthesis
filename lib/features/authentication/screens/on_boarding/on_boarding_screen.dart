@@ -71,7 +71,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               subTitle:
                   "Une plateforme pour vous entraider tout le long de votre parcours scolaire !",
               counterText: "1/4",
-              bgColor: CupertinoColors.darkBackgroundGray,
+              bgColor: Theme.of(context).backgroundColor,
               height: 10)),
       OnBoardingPage(
           model: OnBoardingModel(
@@ -80,7 +80,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               subTitle:
                   "Marre de jamais trouver les pdf du cours ? Retrouve toutes les notes et ressources partagées au même endroit !",
               counterText: "2/4",
-              bgColor: CupertinoColors.white,
+              bgColor: Theme.of(context).colorScheme.secondary,
               height: 10)),
       OnBoardingPage(
           model: OnBoardingModel(
@@ -89,7 +89,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               subTitle:
                   "T'as pas compris un truc ? Pas de problème, discutes avec tes camarades via un chat dédié ! Tu pourras leur poser plein de questions...",
               counterText: "3/4",
-              bgColor: CupertinoColors.darkBackgroundGray,
+              bgColor: Theme.of(context).backgroundColor,
               height: 10)),
       OnBoardingPage(
           model: OnBoardingModel(
@@ -98,7 +98,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               subTitle:
                   "Accèdes aux notes que tu as téléchargé en mode offline !",
               counterText: "4/4",
-              bgColor: CupertinoColors.white,
+              bgColor: Theme.of(context).colorScheme.secondary,
               height: 10)),
     ];
 
@@ -107,6 +107,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         alignment: Alignment.center,
         children: [
           LiquidSwipe(
+            key: widget.key,
             liquidController: controller,
             onPageChangeCallback: (activePageIndex) => {
               setState(() {
@@ -114,7 +115,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               })
             },
             pages: pages,
-            slideIconWidget: const Icon(Icons.arrow_back_ios),
+            slideIconWidget: const Icon(
+              Icons.arrow_back_ios,
+            ),
             enableSideReveal: true,
             enableLoop: true,
           ),

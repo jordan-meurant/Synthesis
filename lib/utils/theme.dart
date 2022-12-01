@@ -6,37 +6,38 @@ import 'package:synthesis/utils/widget_themes/kInputDecorationTheme.dart';
 import '../constants/colors.dart';
 
 class TAppTheme {
-  // make theme private
+  // make them private
   TAppTheme._();
 
   static ThemeData lightTheme = ThemeData(
-    brightness: Brightness.light,
-    fontFamily: "patrick",
-    colorScheme:  const ColorScheme.light(
-      primary: kPrimaryColor,
-    ),
-    textTheme: TTextTheme.lightTextTheme,
-    iconTheme: const IconThemeData(
-      color: kPrimaryColor,
-    ),
-      inputDecorationTheme: kInputDecorationTheme.darkInputDecorationTheme
-  );
+    backgroundColor: kLightBgColor,
+      brightness: Brightness.light,
+      fontFamily: "patrick",
+      colorScheme: const ColorScheme.light(
+          primary: kPrimaryColor,
+          secondary: kDarkBgColor),
+      textTheme: TTextTheme.lightTextTheme,
+      iconTheme: const IconThemeData(
+        color: kPrimaryColor,
+      ),
+      inputDecorationTheme: kInputDecorationTheme.darkInputDecorationTheme);
 
   static ThemeData darkTheme = ThemeData(
-    scaffoldBackgroundColor: CupertinoColors.darkBackgroundGray,
-    primaryColorDark: CupertinoColors.systemRed,
+      backgroundColor: kDarkBgColor,
+      primaryColorDark: CupertinoColors.systemRed,
       brightness: Brightness.dark,
       fontFamily: "patrick",
-      colorScheme:  const ColorScheme.dark(
-        primary: kPrimaryColor,
+      colorScheme: const ColorScheme.dark(
+          primary: kPrimaryColor,
+          background: kDarkBgColor,
+          secondary: kLightBgColor
       ),
       textTheme: TTextTheme.darkTextTheme,
-    iconTheme: const IconThemeData(
-      color: kPrimaryColor,
+      iconTheme: const IconThemeData(
+        color: kPrimaryColor,
+      ),
 
-    ),
-  inputDecorationTheme: kInputDecorationTheme.darkInputDecorationTheme);
-
+      inputDecorationTheme: kInputDecorationTheme.darkInputDecorationTheme);
 
 /*TextStyle(
   fontSize: 50,

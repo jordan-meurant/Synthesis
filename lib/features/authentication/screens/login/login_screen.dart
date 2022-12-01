@@ -32,7 +32,6 @@ class _LoginScreenState extends State<LoginScreen> {
       decoration: TextDecoration.none,
     );
     return Scaffold(
-      backgroundColor: CupertinoColors.darkBackgroundGray,
       body: SafeArea(
         minimum: const EdgeInsets.symmetric(horizontal: 25),
         child: SingleChildScrollView(
