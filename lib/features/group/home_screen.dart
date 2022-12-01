@@ -6,10 +6,8 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_card/image_card.dart';
 import 'package:synthesis/constants/colors.dart';
+import 'package:synthesis/features/authentication/screens/widgets/or_divider_widget.dart';
 import 'package:synthesis/features/group/group_selection_btn_widget.dart';
-
-import '../authentication/screens/forget_password/forget_password_btn_widget.dart';
-import '../authentication/screens/widgets/or_divider_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -24,8 +22,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final avatars = [
-      "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-      "https://avatars.githubusercontent.com/u/46026917?v=4",
+      "jordan-meurant",
+      "DetrembleurArthur",
       "LoicBourge"
     ];
 
@@ -143,15 +141,20 @@ class _HomeScreenState extends State<HomeScreen> {
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
-                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
                                         children: [
                                           Wrap(
                                             spacing: 10,
                                             children: [
                                               Avatar(
-                                                  sources: [GitHubSource("jordan-meurant")],
+                                                  sources: [
+                                                    GitHubSource(
+                                                        "jordan-meurant")
+                                                  ],
                                                   name: "jordan",
-                                                  shape: AvatarShape.circle(30)),
+                                                  shape:
+                                                      AvatarShape.circle(30)),
                                               Text("Jordan Meurant",
                                                   style: Theme.of(context)
                                                       .textTheme
@@ -159,66 +162,72 @@ class _HomeScreenState extends State<HomeScreen> {
                                             ],
                                           ),
                                           Text(
+                                            textAlign: TextAlign.center,
                                             "Contactes ton camarade via mail ou sonnes lui directement !",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .headline5,
                                           ),
-                                          Column(
-                                            children: [
-                                              ElevatedButton(
-                                                  onPressed: () {},
-                                                  child: Row(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                    children: const [
-                                                      Icon(FontAwesomeIcons.envelope),
-                                                      Padding(
-                                                        padding: EdgeInsets.only(left: 10),
-                                                        child: Text(
-                                                          'jordan.meurant@student.hepl.be',
-                                                          style: TextStyle(
-                                                              fontSize: 20,
-                                                              color: Colors.white,
-                                                              fontWeight: FontWeight.w500,
-                                                              fontFamily: 'patrick'),
-                                                        ),
-                                                      )
-                                                    ],
-                                                  )),
-                                              OutlinedButton(
-                                                  style: OutlinedButton.styleFrom(
-                                                      side:  BorderSide(
-                                                          color: kPrimaryColor)),
-                                                  onPressed: () {},
-                                                  child: Row(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                    children: const [
-                                                      Icon(
-                                                        // <-- Icon
-                                                        FontAwesomeIcons.phone,
-                                                        color: kPrimaryColor,
-                                                      ),
-                                                      Padding(
-                                                        padding: EdgeInsets.only(left: 10),
-                                                        child: Text(
-                                                          '0471589262',
-                                                          style: TextStyle(
-                                                              color: kPrimaryColor,
-                                                              fontSize: 25,
-                                                              fontWeight: FontWeight.w500,
-                                                              fontFamily: 'patrick'),
-                                                        ),
-                                                      )
-                                                    ],
-                                                  )),
-                                            ],
-                                          ),
+                                          ElevatedButton(
+                                              onPressed: () {},
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: const [
+                                                  Icon(FontAwesomeIcons
+                                                      .envelope),
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 10),
+                                                    child: Text(
+                                                        'jordan.meurant@student.hepl.be',
+                                                        style: TextStyle(
+                                                            fontSize: 20,
+                                                            color: Colors.white,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            fontFamily:
+                                                                'patrick')),
+                                                  )
+                                                ],
+                                              )),
+                                          OrDividerWidget(),
+                                          OutlinedButton(
+                                              style: OutlinedButton.styleFrom(
+                                                  side: BorderSide(
+                                                      color: kPrimaryColor)),
+                                              onPressed: () {},
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: const [
+                                                  Icon(
+                                                    // <-- Icon
+                                                    FontAwesomeIcons.phone,
+                                                    color: kPrimaryColor,
+                                                  ),
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 10),
+                                                    child: Text(
+                                                      '0471589262',
+                                                      style: TextStyle(
+                                                          color: kPrimaryColor,
+                                                          fontSize: 25,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          fontFamily:
+                                                              'patrick'),
+                                                    ),
+                                                  )
+                                                ],
+                                              )),
                                         ],
                                       ),
                                     ));
                           },
                           child: Avatar(
-                            sources: [NetworkSource(avatar)],
+                            sources: [GitHubSource(avatar)],
                             name: avatar,
                             shape: AvatarShape.rectangle(75, 75,
                                 const BorderRadius.all(Radius.circular(15))),
