@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
@@ -12,6 +13,8 @@ class AuthenticationRepository extends GetxController {
   final _auth = FirebaseAuth.instance;
 
   late final Rx<User?> firebaseUser;
+
+  late final User user;
 
   @override
   void onReady() {
@@ -49,5 +52,19 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
-  Future<void> logout() async => await _auth.signOut();
+  Future<void> logout() async {
+    await _auth.signOut();
+  }
+
+  Future<void> userSetup(
+      String lastName, String firstName, String phoneNo) async {
+    CollectionReference users = FirebaseFirestore.instance.collection('Users');
+
+    users.add({
+      'lastName': lastName,
+      'firstName': firstName,
+      'phoneNo': phoneNo,
+      'uid': firebaseUser.value?.uid.toString()
+    });
+  }
 }

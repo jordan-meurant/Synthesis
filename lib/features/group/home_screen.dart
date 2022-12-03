@@ -4,28 +4,24 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:image_card/image_card.dart';
 import 'package:synthesis/constants/colors.dart';
+import 'package:synthesis/features/group/controllers/group_controller.dart';
 import 'package:synthesis/features/group/group_selection_btn_widget.dart';
+
 import '../../../../widgets/or_divider_widget.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  final String nameGroup = "MASI";
-
-  @override
   Widget build(BuildContext context) {
-    final avatars = [
-      "jordan-meurant",
-      "DetrembleurArthur",
-      "LoicBourge"
-    ];
+    // TODO take groups from FIREBASE
+    const String nameGroup = "MASI";
+
+    final groupController = Get.put(GroupController());
+    final avatars = ["jordan-meurant", "DetrembleurArthur", "LoicBourge"];
 
     return Scaffold(
       body: SafeArea(
@@ -46,6 +42,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   const GroupSelectionBtnWidget(),
                   Avatar(
+                      onTap: () {
+                        groupController.logout();
+                      },
                       sources: [GitHubSource("jordan-meurant")],
                       name: "jordan",
                       shape: AvatarShape.circle(25)),
@@ -118,9 +117,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   viewportFraction: 0.7,
                   enlargeCenterPage: true,
                   onPageChanged: (index, position) {
-                    setState(() {
-                      //_currentMovie = index;
-                    });
+                    //setState(() {
+                    //_currentMovie = index;
+                    //});
                   },
                 ),
               ),
@@ -191,10 +190,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   )
                                                 ],
                                               )),
-                                          OrDividerWidget(),
+                                          const OrDividerWidget(),
                                           OutlinedButton(
                                               style: OutlinedButton.styleFrom(
-                                                  side: BorderSide(
+                                                  side: const BorderSide(
                                                       color: kPrimaryColor)),
                                               onPressed: () {},
                                               child: Row(
@@ -237,11 +236,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 options: CarouselOptions(
                   height: 75,
                   viewportFraction: 0.3,
-                  onPageChanged: (index, position) {
-                    setState(() {
-                      //_currentMovie = index;
-                    });
-                  },
+                  onPageChanged: (index, position) {},
                 ),
               ),
             ],

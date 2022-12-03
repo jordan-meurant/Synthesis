@@ -1,24 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:synthesis/links/link.dart';
-import '../../../../widgets/or_divider_widget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:synthesis/links/link.dart';
+
 import '../../../../constants/colors.dart';
 import '../../../../utils/routes.dart';
+import '../../../../widgets/or_divider_widget.dart';
+import '../../controllers/signin_controller.dart';
 import '../forget_password/forget_password_screen.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  bool? _checkbox = false;
-
-  @override
   Widget build(BuildContext context) {
+    final controller = Get.put(SignInController());
+    final formKey = GlobalKey<FormState>();
+    bool? _checkbox = false;
     const kBigLink = TextStyle(
       color: kPrimaryColor,
       fontSize: 20,
@@ -44,17 +43,20 @@ class _LoginScreenState extends State<LoginScreen> {
                 style: Theme.of(context).textTheme.headline2,
               ),
               Form(
+                key: formKey,
                 child: Wrap(
                   direction: Axis.horizontal,
                   runSpacing: 10,
                   children: [
                     TextFormField(
+                      controller: controller.email,
                       decoration: const InputDecoration(
                         label: Text("Email"),
                         prefixIcon: Icon(Icons.mail_rounded),
                       ),
                     ),
                     TextFormField(
+                      controller: controller.password,
                       decoration: const InputDecoration(
                         label: Text("Mot de passe"),
                         prefixIcon: Icon(Icons.lock_open_rounded),
@@ -80,10 +82,16 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    if(formKey.currentState!.validate()){
+                      SignInController.instance.login(controller.email.text.trim(), controller.password.text.trim());
+                    }
+                  },
                   icon: const Icon(FontAwesomeIcons.arrowRightToBracket),
-                  label:  Text('Connexion',
-                      style: TextStyle(fontSize: 25, color: Theme.of(context).colorScheme.secondary)),
+                  label: Text('Connexion',
+                      style: TextStyle(
+                          fontSize: 25,
+                          color: Theme.of(context).colorScheme.secondary)),
                 ),
               ),
               const OrDividerWidget(),
@@ -97,8 +105,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     image: AssetImage("assets/img/google_logo.png"),
                     height: 25,
                   ),
-                  label:  Text('Connexion avec Google',
-                      style: TextStyle(fontSize: 25, color: Theme.of(context).colorScheme.secondary)),
+                  label: Text('Connexion avec Google',
+                      style: TextStyle(
+                          fontSize: 25,
+                          color: Theme.of(context).colorScheme.secondary)),
                 ),
               ),
               Row(

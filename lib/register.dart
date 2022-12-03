@@ -104,10 +104,15 @@ class _RegisterState extends State<Register> {
                 child: OutlinedButton.icon(
                   onPressed: () {
                     print("ho YES");
-                    if(formKey.currentState!.validate()){
+                    if (formKey.currentState!.validate()) {
                       print("BIG YES");
-                      SignUpController.instance.registerUser(controller.email.text.trim(), controller.password.text.trim());
-                    }else{
+                      SignUpController.instance.registerUser(
+                          controller.lastName.text.trim(),
+                          controller.firstName.text.trim(),
+                          controller.phoneNo.text.trim(),
+                          controller.email.text.trim(),
+                          controller.password.text.trim());
+                    } else {
                       print("ERROR FORM");
                     }
                   },

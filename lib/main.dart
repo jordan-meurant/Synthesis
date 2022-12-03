@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialRoute: registerScreen,
       routes: {
         onBoardingScreen: (context) => const OnBoardingScreen(),
         registerScreen: (context) => const Register(),
@@ -39,6 +38,9 @@ class MyApp extends StatelessWidget {
       theme: TAppTheme.lightTheme,
       darkTheme: TAppTheme.darkTheme,
       themeMode: ThemeMode.dark,
+      defaultTransition: Transition.rightToLeftWithFade,
+      transitionDuration: const Duration(milliseconds: 400),
+      home: const CircularProgressIndicator(),
     );
   }
 }
