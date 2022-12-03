@@ -20,7 +20,7 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(SignUpController());
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
 
     return Scaffold(
       body: SafeArea(
@@ -36,6 +36,7 @@ class _RegisterState extends State<Register> {
                 style: Theme.of(context).textTheme.headline2,
               ),
               Form(
+                key: formKey,
                 child: Wrap(
                   direction: Axis.horizontal,
                   runSpacing: 10,
@@ -62,6 +63,7 @@ class _RegisterState extends State<Register> {
                       ),
                     ),
                     TextFormField(
+                      keyboardType: TextInputType.phone,
                       controller: controller.phoneNo,
                       decoration: const InputDecoration(
                         label: Text("Numéro de téléphone"),
@@ -69,6 +71,7 @@ class _RegisterState extends State<Register> {
                       ),
                     ),
                     TextFormField(
+                      obscureText: true,
                       controller: controller.password,
                       decoration: const InputDecoration(
                         label: Text("Mot de passe"),
@@ -100,8 +103,12 @@ class _RegisterState extends State<Register> {
                 width: double.infinity,
                 child: OutlinedButton.icon(
                   onPressed: () {
-                    if(_formKey.currentState!.validate()){
+                    print("ho YES");
+                    if(formKey.currentState!.validate()){
+                      print("BIG YES");
                       SignUpController.instance.registerUser(controller.email.text.trim(), controller.password.text.trim());
+                    }else{
+                      print("ERROR FORM");
                     }
                   },
                   icon: const Icon(FontAwesomeIcons.userPlus),

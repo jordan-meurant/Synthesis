@@ -15,7 +15,7 @@ class AuthenticationRepository extends GetxController {
 
   @override
   void onReady() {
-    firebaseUser = _auth.currentUser as Rx<User?>;
+    firebaseUser = Rx<User?>(_auth.currentUser);
     firebaseUser.bindStream(_auth.userChanges());
     ever(firebaseUser, _setScreen);
   }
@@ -34,7 +34,9 @@ class AuthenticationRepository extends GetxController {
       firebaseUser.value != null
           ? Get.offAll(() => const HomeScreen())
           : Get.to(() => const OnBoardingScreen());
-    } catch (_) {}
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future<void> loginWithEmailAndPassword(String email, String password) async {
