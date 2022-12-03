@@ -6,8 +6,8 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_card/image_card.dart';
 import 'package:synthesis/constants/colors.dart';
-import 'package:synthesis/features/authentication/screens/widgets/or_divider_widget.dart';
 import 'package:synthesis/features/group/group_selection_btn_widget.dart';
+import '../../../../widgets/or_divider_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);

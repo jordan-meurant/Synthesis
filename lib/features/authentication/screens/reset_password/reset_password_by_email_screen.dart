@@ -4,8 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../utils/routes.dart';
-import '../widgets/or_divider_widget.dart';
-
+import '../../../../widgets/or_divider_widget.dart';
 class ResetPasswordByEmailScreen extends StatelessWidget {
   const ResetPasswordByEmailScreen({Key? key}) : super(key: key);
 

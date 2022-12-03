@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:synthesis/features/authentication/screens/widgets/or_divider_widget.dart';
 import 'package:synthesis/links/link.dart';
-
+import '../../../../widgets/or_divider_widget.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../constants/colors.dart';
 import '../../../../utils/routes.dart';
-import '../forget_password/forget_password_btn_widget.dart';
 import '../forget_password/forget_password_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -66,7 +65,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Link(
                         "Mot de passe oublié ?",
                         () {
-                          ForgetPasswordScreen.buildModalOptionsForgetPassword(context);
+                          ForgetPasswordScreen.buildModalOptionsForgetPassword(
+                              context);
                         },
                         kBigLink,
                       ),
@@ -77,54 +77,30 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(
                 height: 50,
               ),
-              ElevatedButton(
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton.icon(
                   onPressed: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Icon(
-                        // <-- Icon
-                        Icons.login_rounded,
-                        color: Colors.white,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 10),
-                        child: Text(
-                          'Connexion',
-                          style: TextStyle(
-                              fontSize: 25,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: 'patrick'),
-                        ),
-                      )
-                    ],
-                  )),
+                  icon: const Icon(FontAwesomeIcons.arrowRightToBracket),
+                  label:  Text('Connexion',
+                      style: TextStyle(fontSize: 25, color: Theme.of(context).colorScheme.secondary)),
+                ),
+              ),
               const OrDividerWidget(),
-              ElevatedButton(
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton.icon(
+                  onPressed: () {},
                   style: ElevatedButton.styleFrom(
                       backgroundColor: CupertinoColors.white),
-                  onPressed: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Image(
-                        image: AssetImage("assets/img/google_logo.png"),
-                        height: 25.0,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 10),
-                        child: Text(
-                          'Connexion avec Google',
-                          style: TextStyle(
-                              fontSize: 25,
-                              color: CupertinoColors.darkBackgroundGray,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: 'patrick'),
-                        ),
-                      )
-                    ],
-                  )),
+                  icon: const Image(
+                    image: AssetImage("assets/img/google_logo.png"),
+                    height: 25,
+                  ),
+                  label:  Text('Connexion avec Google',
+                      style: TextStyle(fontSize: 25, color: Theme.of(context).colorScheme.secondary)),
+                ),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -139,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     }, kBigLink),
                   )
                 ],
-              )
+              ),
               // Note: Same code is applied for the TextFormField as well
             ],
           ),
@@ -147,5 +123,4 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-
 }

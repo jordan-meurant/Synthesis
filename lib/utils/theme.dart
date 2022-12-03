@@ -15,28 +15,31 @@ class TAppTheme {
       fontFamily: "patrick",
       colorScheme: const ColorScheme.light(
           primary: kPrimaryColor,
-          secondary: kDarkBgColor),
+          secondary: kSecondaryColor,
+        tertiary: kSecondaryColor
+      ),
       textTheme: TTextTheme.lightTextTheme,
       iconTheme: const IconThemeData(
         color: kPrimaryColor,
       ),
-      inputDecorationTheme: kInputDecorationTheme.darkInputDecorationTheme);
+      inputDecorationTheme: kInputDecorationTheme.darkInputDecorationTheme,
+   );
 
   static ThemeData darkTheme = ThemeData(
-      backgroundColor: kDarkBgColor,
+      backgroundColor: kSecondaryColor,
       primaryColorDark: CupertinoColors.systemRed,
       brightness: Brightness.dark,
       fontFamily: "patrick",
       colorScheme: const ColorScheme.dark(
           primary: kPrimaryColor,
-          background: kDarkBgColor,
-          secondary: kLightBgColor
+          background: kSecondaryColor,
+          secondary: kSecondaryColor,
+        tertiary: kLightBgColor
       ),
       textTheme: TTextTheme.darkTextTheme,
       iconTheme: const IconThemeData(
         color: kPrimaryColor,
       ),
-
       inputDecorationTheme: kInputDecorationTheme.darkInputDecorationTheme);
 
 /*TextStyle(

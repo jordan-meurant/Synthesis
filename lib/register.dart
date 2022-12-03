@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:synthesis/utils/routes.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:synthesis/features/authentication/controllers/signup_controller.dart';
 
+import '../../../../widgets/or_divider_widget.dart';
 import 'constants/colors.dart';
 
 class Register extends StatefulWidget {
@@ -14,41 +17,11 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   bool? _checkbox = false;
 
-  Widget orDivider() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 8),
-      child: Row(
-        children: [
-          Flexible(
-            child: Container(
-              height: 1,
-              color: kPrimaryColor,
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Text(
-              'ou',
-              style: TextStyle(
-                fontFamily: "satisfy",
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-          Flexible(
-            child: Container(
-              height: 1,
-              color: kPrimaryColor,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(SignUpController());
+    final _formKey = GlobalKey<FormState>();
+
     return Scaffold(
       body: SafeArea(
         minimum: const EdgeInsets.symmetric(horizontal: 25),
@@ -68,34 +41,39 @@ class _RegisterState extends State<Register> {
                   runSpacing: 10,
                   children: [
                     TextFormField(
+                      controller: controller.lastName,
                       decoration: const InputDecoration(
-                          label: Text("Nom"),
-                          prefixIcon: Icon(Icons.person_outline),
-                          ),
+                        label: Text("Nom"),
+                        prefixIcon: Icon(Icons.person_outline),
+                      ),
                     ),
                     TextFormField(
+                      controller: controller.firstName,
                       decoration: const InputDecoration(
-                          label: Text("Prénom"),
-                          prefixIcon: Icon(Icons.person_outline),
-                          ),
+                        label: Text("Prénom"),
+                        prefixIcon: Icon(Icons.person_outline),
+                      ),
                     ),
                     TextFormField(
+                      controller: controller.email,
                       decoration: const InputDecoration(
-                          label: Text("Email"),
-                          prefixIcon: Icon(Icons.mail_rounded),
-                          ),
+                        label: Text("Email"),
+                        prefixIcon: Icon(Icons.mail_rounded),
+                      ),
                     ),
                     TextFormField(
+                      controller: controller.phoneNo,
                       decoration: const InputDecoration(
-                          label: Text("Numéro de téléphone"),
-                          prefixIcon: Icon(Icons.phone),
-                          ),
+                        label: Text("Numéro de téléphone"),
+                        prefixIcon: Icon(Icons.phone),
+                      ),
                     ),
                     TextFormField(
+                      controller: controller.password,
                       decoration: const InputDecoration(
-                          label: Text("Mot de passe"),
-                          prefixIcon: Icon(Icons.lock_open_rounded),
-                          ),
+                        label: Text("Mot de passe"),
+                        prefixIcon: Icon(Icons.lock_open_rounded),
+                      ),
                     ),
                   ],
                 ),
@@ -118,82 +96,49 @@ class _RegisterState extends State<Register> {
                   ),
                 ],
               ),
-              OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                      side:  BorderSide(
-                          color: kPrimaryColor)),
-                  onPressed: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Icon(
-                        // <-- Icon
-                        Icons.app_registration_rounded,
-                        color: kPrimaryColor,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 10),
-                        child: Text(
-                          'Inscription',
-                          style: TextStyle(
-                              color: kPrimaryColor,
-                              fontSize: 25,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: 'patrick'),
-                        ),
-                      )
-                    ],
-                  )),
-              orDivider(),
-              ElevatedButton(
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton.icon(
                   onPressed: () {
-                    Navigator.pushNamed(context, loginScreen);
+                    if(_formKey.currentState!.validate()){
+                      SignUpController.instance.registerUser(controller.email.text.trim(), controller.password.text.trim());
+                    }
                   },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Icon(
-                        // <-- Icon
-                        Icons.login_rounded,
-                        color: Colors.white,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 10),
-                        child: Text(
-                          'Connexion',
-                          style: TextStyle(
-                              fontSize: 25,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: 'patrick'),
-                        ),
-                      )
-                    ],
-                  )),
-              ElevatedButton(
+                  icon: const Icon(FontAwesomeIcons.userPlus),
+                  label: const Text(
+                    'Inscription',
+                    style: TextStyle(fontSize: 25, color: kPrimaryColor),
+                  ),
+                ),
+              ),
+              const OrDividerWidget(),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton.icon(
+                  onPressed: () {},
+                  icon: const Icon(FontAwesomeIcons.arrowRightToBracket),
+                  label: Text('Connexion',
+                      style: TextStyle(
+                          fontSize: 25,
+                          color: Theme.of(context).colorScheme.secondary)),
+                ),
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton.icon(
+                  onPressed: () {},
                   style: ElevatedButton.styleFrom(
                       backgroundColor: CupertinoColors.white),
-                  onPressed: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Image(
-                        image: AssetImage("assets/img/google_logo.png"),
-                        height: 25.0,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 10),
-                        child: Text(
-                          'Connexion avec Google',
-                          style: TextStyle(
-                              fontSize: 25,
-                              color: CupertinoColors.darkBackgroundGray,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: 'patrick'),
-                        ),
-                      )
-                    ],
-                  )),
+                  icon: const Image(
+                    image: AssetImage("assets/img/google_logo.png"),
+                    height: 25,
+                  ),
+                  label: Text('Connexion avec Google',
+                      style: TextStyle(
+                          fontSize: 25,
+                          color: Theme.of(context).colorScheme.secondary)),
+                ),
+              ),
 
               // Note: Same code is applied for the TextFormField as well
             ],

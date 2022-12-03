@@ -80,7 +80,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               subTitle:
                   "Marre de jamais trouver les pdf du cours ? Retrouve toutes les notes et ressources partagées au même endroit !",
               counterText: "2/4",
-              bgColor: Theme.of(context).colorScheme.secondary,
+              bgColor: Theme.of(context).colorScheme.tertiary,
               height: 10)),
       OnBoardingPage(
           model: OnBoardingModel(
@@ -98,7 +98,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               subTitle:
                   "Accèdes aux notes que tu as téléchargé en mode offline !",
               counterText: "4/4",
-              bgColor: Theme.of(context).colorScheme.secondary,
+              bgColor: Theme.of(context).colorScheme.tertiary,
               height: 10)),
     ];
 
