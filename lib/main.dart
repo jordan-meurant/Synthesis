@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:synthesis/features/authentication/screens/reset_password/reset_password_by_email_screen.dart';
 import 'package:synthesis/features/group/course_screen.dart';
 import 'package:synthesis/features/group/home_screen.dart';
-import 'package:synthesis/register.dart';
+import 'package:synthesis/signup_screen.dart';
 import 'package:synthesis/repository/authentication_repository.dart';
 import 'package:synthesis/utils/routes.dart';
 import 'package:synthesis/utils/theme.dart';
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       routes: {
         onBoardingScreen: (context) => const OnBoardingScreen(),
-        registerScreen: (context) => const Register(),
+        registerScreen: (context) => const SignUpScreen(),
         loginScreen: (context) => const LoginScreen(),
         resetPasswordByEmailScreen: (context) => const ResetPasswordByEmailScreen(),
         homeScreen: (context) => const HomeScreen(),

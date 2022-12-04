@@ -7,14 +7,14 @@ import 'package:synthesis/features/authentication/controllers/signup_controller.
 import '../../../../widgets/or_divider_widget.dart';
 import 'constants/colors.dart';
 
-class Register extends StatefulWidget {
-  const Register({Key? key}) : super(key: key);
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
 
   @override
-  State<Register> createState() => _RegisterState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _RegisterState extends State<Register> {
+class _SignUpScreenState extends State<SignUpScreen> {
   bool? _checkbox = false;
 
   @override

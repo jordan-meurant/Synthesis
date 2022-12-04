@@ -2,19 +2,23 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../features/authentication/screens/on_boarding/on_boarding_screen.dart';
 import '../features/group/home_screen.dart';
+import '../profile_controller.dart';
 
 class AuthenticationRepository extends GetxController {
   // use it every where if need it
   static AuthenticationRepository get instance => Get.find();
 
   final _auth = FirebaseAuth.instance;
+  final _store = FirebaseFirestore.instance;
 
   late final Rx<User?> firebaseUser;
 
-  late final User user;
+  User get user => _auth.currentUser!;
+  late UserProfile userProfile;
 
   @override
   void onReady() {
@@ -32,8 +36,9 @@ class AuthenticationRepository extends GetxController {
   Future<void> createUserWithEmailAndPassword(
       String email, String password) async {
     try {
-      await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      UserCredential userCredential = await _auth
+          .createUserWithEmailAndPassword(email: email, password: password);
+
       firebaseUser.value != null
           ? Get.offAll(() => const HomeScreen())
           : Get.to(() => const OnBoardingScreen());
@@ -58,7 +63,7 @@ class AuthenticationRepository extends GetxController {
 
   Future<void> userSetup(
       String lastName, String firstName, String phoneNo) async {
-    CollectionReference users = FirebaseFirestore.instance.collection('Users');
+    CollectionReference users = _store.collection('Users');
 
     users.add({
       'lastName': lastName,
@@ -67,4 +72,35 @@ class AuthenticationRepository extends GetxController {
       'uid': firebaseUser.value?.uid.toString()
     });
   }
+
+  Future<void> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
+      if (googleAuth?.accessToken != null && googleAuth?.idToken != null) {
+        final credential = GoogleAuthProvider.credential(
+            accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
+
+        UserCredential userCredential =
+            await _auth.signInWithCredential(credential);
+      }
+    } catch (_) {}
+  }
+
+  Future<UserProfile> getUserProfile() async {
+    var response = await _store
+        .collection('Users')
+        .where('uid', isEqualTo: "RdyMVrk78yaSde0h9OoyyLu6uVr1")
+        .limit(1)
+        .get();
+
+       return UserProfile.fromJson(response.docs.first.data());
+      /*response.docs.forEach((doc) {
+        print(doc.data());
+      });*/
+  }
 }
+
+

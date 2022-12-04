@@ -9,6 +9,7 @@ import 'package:image_card/image_card.dart';
 import 'package:synthesis/constants/colors.dart';
 import 'package:synthesis/features/group/controllers/group_controller.dart';
 import 'package:synthesis/features/group/group_selection_btn_widget.dart';
+import 'package:synthesis/profile_screen.dart';
 
 import '../../../../widgets/or_divider_widget.dart';
 
@@ -43,7 +44,8 @@ class HomeScreen extends StatelessWidget {
                   const GroupSelectionBtnWidget(),
                   Avatar(
                       onTap: () {
-                        groupController.logout();
+                        //groupController.logout();
+                        Get.to(const ProfileScreen());
                       },
                       sources: [GitHubSource("jordan-meurant")],
                       name: "jordan",
