@@ -187,7 +187,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       style: ElevatedButton.styleFrom(
                           backgroundColor: CupertinoColors.white),
                       onPressed: () {
-                        AuthenticationRepository.instance.signInWithGoogle();
+                        AuthenticationController.instance.signInWithGoogle();
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,

@@ -4,6 +4,6 @@ class GroupController {
   static GroupController get instance => Get.find();
 
   void logout(){
-    AuthenticationRepository.instance.logout();
+    AuthenticationController.instance.logout();
   }
 }

@@ -9,7 +9,7 @@ class SignInController extends GetxController{
   final password = TextEditingController();
 
   void login(String email, String password){
-    AuthenticationRepository.instance.loginWithEmailAndPassword(email, password);
+    AuthenticationController.instance.loginWithEmailAndPassword(email, password);
   }
 
 }

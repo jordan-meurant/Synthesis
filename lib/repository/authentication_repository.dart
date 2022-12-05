@@ -8,9 +8,9 @@ import '../features/authentication/screens/on_boarding/on_boarding_screen.dart';
 import '../features/group/home_screen.dart';
 import '../profile_controller.dart';
 
-class AuthenticationRepository extends GetxController {
+class AuthenticationController extends GetxController {
   // use it every where if need it
-  static AuthenticationRepository get instance => Get.find();
+  static AuthenticationController get instance => Get.find();
 
   final _auth = FirebaseAuth.instance;
   final _store = FirebaseFirestore.instance;
