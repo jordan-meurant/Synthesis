@@ -1,43 +1,26 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:synthesis/repository/authentication_repository.dart';
+import 'package:synthesis/repository/authentication_controller.dart';
+
+import 'models/userprofile.dart';
 
 class ProfileController extends GetxController {
-
   static ProfileController get instance => Get.find();
 
-   Rx<UserProfile?> userProfile = null.obs;
+  // ATTENTION NEED THIS CAST OR EXCEPTION WILL BE THROW
+  late Rx<UserProfile?> userProfile = (null as UserProfile?).obs;
+  var isLoading = false.obs;
 
   @override
-  void onInit() {
-    super.onInit();
-    print("merde");
-    fetUserProfile();
+  void onReady() {
+    userProfile.bindStream(AuthenticationController.instance.getUserProfile());
+    ever(userProfile, _setScreen);
   }
 
-  Future<void> fetUserProfile() async {
-      userProfile = Rx<UserProfile?>(await AuthenticationController.instance.getUserProfile().then((value){print(value.lastName);}));
+  _setScreen(UserProfile? userProfile) {
+    if (userProfile != null) {
+      isLoading.value = true;
+    }
   }
-
-
 }
 
-class UserProfile {
-  final String id;
-  final String lastName;
-  final String firstName;
-  final String phoneNo;
-
-  UserProfile({
-    required this.id,
-    required this.lastName,
-    required this.firstName,
-    required this.phoneNo,
-  });
-
-  static UserProfile fromJson(Map<String, dynamic> json) => UserProfile(
-        id: json['uid']?? '',
-        lastName: json['lastName']?? '',
-        firstName: json['firstName']?? '',
-        phoneNo: json['phoneNo'] ?? '',
-      );
-}

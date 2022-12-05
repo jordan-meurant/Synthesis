@@ -9,6 +9,7 @@ import 'package:image_card/image_card.dart';
 import 'package:synthesis/constants/colors.dart';
 import 'package:synthesis/features/group/controllers/group_controller.dart';
 import 'package:synthesis/features/group/group_selection_btn_widget.dart';
+import 'package:synthesis/profile_controller.dart';
 import 'package:synthesis/profile_screen.dart';
 
 import '../../../../widgets/or_divider_widget.dart';
@@ -22,6 +23,7 @@ class HomeScreen extends StatelessWidget {
     const String nameGroup = "MASI";
 
     final groupController = Get.put(GroupController());
+    final profileController = Get.put(ProfileController());
     final avatars = ["jordan-meurant", "DetrembleurArthur", "LoicBourge"];
 
     return Scaffold(
@@ -42,14 +44,21 @@ class HomeScreen extends StatelessWidget {
                     child: const Icon(FontAwesomeIcons.circlePlus),
                   ),
                   const GroupSelectionBtnWidget(),
-                  Avatar(
-                      onTap: () {
-                        //groupController.logout();
-                        Get.to(const ProfileScreen());
-                      },
-                      sources: [GitHubSource("jordan-meurant")],
-                      name: "jordan",
-                      shape: AvatarShape.circle(25)),
+                  Obx(() => profileController.isLoading.value
+                      ? Avatar(
+                          onTap: () {
+                            //groupController.logout();
+                            Get.to(() => const ProfileScreen());
+                          },
+                          sources: [
+                            NetworkSource(
+                                profileController.userProfile.value?.imageURL ??
+                                    '')
+                          ],
+                          name:
+                              profileController.userProfile.value?.displayName,
+                          shape: AvatarShape.circle(25))
+                      : const CircularProgressIndicator())
                 ],
               ),
               Text(
@@ -59,12 +68,8 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 10),
               ElevatedButton(
                   onPressed: () {
-                    Clipboard.setData(ClipboardData(text: "yes")).then((_) {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text("Code de groupe copié !"),
-                        behavior: SnackBarBehavior.floating,
-                      ));
-                    });
+                    Clipboard.setData(ClipboardData(text: "yes"));
+                    Get.snackbar("Code de groupe copié !", "kmqfjmoqisfhmqsdkfh", snackPosition: SnackPosition.BOTTOM, margin: const EdgeInsets.all(10));
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.min,

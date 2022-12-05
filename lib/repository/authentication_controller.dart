@@ -6,6 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 import '../features/authentication/screens/on_boarding/on_boarding_screen.dart';
 import '../features/group/home_screen.dart';
+import '../models/userprofile.dart';
 import '../profile_controller.dart';
 
 class AuthenticationController extends GetxController {
@@ -61,14 +62,13 @@ class AuthenticationController extends GetxController {
     await _auth.signOut();
   }
 
-  Future<void> userSetup(
-      String lastName, String firstName, String phoneNo) async {
-    CollectionReference users = _store.collection('Users');
-
-    users.add({
-      'lastName': lastName,
-      'firstName': firstName,
-      'phoneNo': phoneNo,
+  Future<void> userSetup(String? displayName, String? email,
+      {String? phoneNo, String? imageURL}) async {
+    _store.collection('Users').doc(user.uid).set({
+      'displayName': displayName ?? '/',
+      'phoneNo': phoneNo ?? '/',
+      'imageURL': imageURL ?? '/',
+      'email': email ?? '/',
       'uid': firebaseUser.value?.uid.toString()
     });
   }
@@ -85,22 +85,27 @@ class AuthenticationController extends GetxController {
 
         UserCredential userCredential =
             await _auth.signInWithCredential(credential);
+        print(userCredential.user);
+        if (userCredential.user != null) {
+          if (userCredential.additionalUserInfo!.isNewUser) {
+            userSetup(
+                userCredential.user!.displayName, userCredential.user!.email,
+                phoneNo: userCredential.user!.phoneNumber,
+                imageURL: userCredential.user!.photoURL);
+          }
+        }
       }
-    } catch (_) {}
+    } on FirebaseAuthException catch (e) {
+      print("EXCEPTION 8888");
+      print(e.code);
+    }
   }
 
-  Future<UserProfile> getUserProfile() async {
-    var response = await _store
-        .collection('Users')
-        .where('uid', isEqualTo: "RdyMVrk78yaSde0h9OoyyLu6uVr1")
-        .limit(1)
-        .get();
-
-       return UserProfile.fromJson(response.docs.first.data());
-      /*response.docs.forEach((doc) {
-        print(doc.data());
-      });*/
+  Stream<UserProfile> getUserProfile() {
+    return _store
+        .collection("Users")
+        .doc(user.uid)
+        .snapshots()
+        .map((s) => UserProfile.fromSnapshot(s));
   }
 }
-
-

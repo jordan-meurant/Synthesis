@@ -3,7 +3,7 @@ import 'package:synthesis/features/authentication/screens/reset_password/reset_p
 import 'package:synthesis/features/group/course_screen.dart';
 import 'package:synthesis/features/group/home_screen.dart';
 import 'package:synthesis/signup_screen.dart';
-import 'package:synthesis/repository/authentication_repository.dart';
+import 'package:synthesis/repository/authentication_controller.dart';
 import 'package:synthesis/utils/routes.dart';
 import 'package:synthesis/utils/theme.dart';
 import 'firebase_options.dart';

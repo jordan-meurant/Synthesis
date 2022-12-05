@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 class Link extends StatelessWidget {
   final String _text;
 
-  final TextStyle? _style;
+  final TextStyle _style;
 
-  const Link(this._text,this._onTap, this._style);
+  const Link(this._text,this._onTap, this._style, {super.key});
 
   final GestureTapCallback _onTap;
 

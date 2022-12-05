@@ -1,12 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:synthesis/links/link.dart';
-import 'package:synthesis/repository/authentication_repository.dart';
+import 'package:synthesis/features/authentication/screens/login/login_screen.dart';
+import 'package:synthesis/partials/buttons/next_button.dart';
+import 'package:synthesis/partials/links/link.dart';
+import 'package:synthesis/repository/authentication_controller.dart';
 import 'package:synthesis/utils/routes.dart';
+import 'package:synthesis/widgets/or_divider_widget.dart';
 
 import '../../../../constants/colors.dart';
+import '../../../../partials/buttons/icon_button.dart';
+import '../../../../partials/buttons/image_button.dart';
 import '../../models/model_on_boarding.dart';
 import 'on_boarding_page_widget.dart';
 
@@ -18,35 +25,6 @@ class OnBoardingScreen extends StatefulWidget {
 }
 
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
-  Widget orDivider() {
-    return Row(
-      children: [
-        Flexible(
-          child: Container(
-            height: 1,
-            color: kPrimaryColor,
-          ),
-        ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: Text(
-            'ou',
-            style: TextStyle(
-                fontFamily: "satisfy",
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-                color: CupertinoColors.systemGrey4),
-          ),
-        ),
-        Flexible(
-          child: Container(
-            height: 1,
-            color: kPrimaryColor,
-          ),
-        ),
-      ],
-    );
-  }
 
   final controller = LiquidController();
   int currentPage = 0;
@@ -125,22 +103,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           Positioned(
               top: 50,
               right: 40,
-              child: OutlinedButton(
-                onPressed: () {
-                  controller.animateToPage(page: controller.currentPage + 1);
-                },
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    side: const BorderSide(color: Colors.black87),
-                    shape: const CircleBorder(),
-                    padding: EdgeInsets.all(10)),
-                child: Container(
-                  padding: EdgeInsets.all(10),
-                  decoration: const BoxDecoration(
-                      color: CupertinoColors.black, shape: BoxShape.circle),
-                  child: const Icon(Icons.fast_forward_rounded),
-                ),
-              )),
+              child: NextButton(onPressed: () {
+                controller.animateToPage(page: controller.currentPage + 1);
+              })),
           Positioned(
             bottom: 220,
             child: AnimatedSmoothIndicator(
@@ -152,63 +117,21 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             ),
           ),
           Positioned(
+              width: MediaQuery.of(context).size.width * 0.7,
               bottom: 40,
               child: Column(
                 children: [
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, loginScreen);
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Icon(
-                            // <-- Icon
-                            Icons.login_rounded,
-                            color: Colors.white,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 10),
-                            child: Text(
-                              'Connexion',
-                              style: TextStyle(
-                                  fontSize: 25,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: 'patrick'),
-                            ),
-                          )
-                        ],
-                      )),
-                  SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.5,
-                      child: orDivider()),
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: CupertinoColors.white),
+                  CustomIconButton(
+                      icon: const Icon(FontAwesomeIcons.arrowRightToBracket),
+                      title: 'Connexion',
+                      onPressed: () => Get.to(() => const LoginScreen())),
+                  const OrDividerWidget(),
+                  ImageButton(
+                      imageURL: 'assets/img/google_logo.png',
+                      title: 'Connexion avec Google',
                       onPressed: () {
                         AuthenticationController.instance.signInWithGoogle();
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Image(
-                            image: AssetImage("assets/img/google_logo.png"),
-                            height: 25.0,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 10),
-                            child: Text(
-                              'Connexion avec Google',
-                              style: TextStyle(
-                                  fontSize: 25,
-                                  color: CupertinoColors.darkBackgroundGray,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: 'patrick'),
-                            ),
-                          )
-                        ],
-                      )),
+                      }),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -225,7 +148,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     ],
                   )
                 ],
-              ))
+              )),
         ],
       ),
     );

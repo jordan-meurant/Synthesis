@@ -103,9 +103,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 width: double.infinity,
                 child: OutlinedButton.icon(
                   onPressed: () {
-                    print("ho YES");
                     if (formKey.currentState!.validate()) {
-                      print("BIG YES");
                       SignUpController.instance.registerUser(
                           controller.lastName.text.trim(),
                           controller.firstName.text.trim(),

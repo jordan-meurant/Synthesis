@@ -1,9 +1,8 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'constants/colors.dart';
-import 'links/link.dart';
+import 'partials/links/link.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -45,6 +44,7 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+
   @override
   Widget build(BuildContext context) {
     const kBigLink = TextStyle(
@@ -67,9 +67,9 @@ class _HomeState extends State<Home> {
             children: [
               Image.asset("assets/img/logo.png", width: 200),
               const SizedBox(height: 30),
-               Text(
+              Text(
                 "Synthesis",
-                style:  Theme.of(context).textTheme.headline2,
+                style: Theme.of(context).textTheme.headline2,
               ),
               const SizedBox(height: 20),
               const Text(
@@ -130,17 +130,22 @@ class _HomeState extends State<Home> {
                       )
                     ],
                   )),
-              const SizedBox(height: 10,),
-              Row(mainAxisAlignment: MainAxisAlignment.center,
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                const Text("Pas de compte ?", style: kFormText,),
-                Padding(
-                  padding: const EdgeInsets.only(left: 5),
-                  child: Link("Crée-le !", () {}, kBigLink),
-                )
-              ],
+                  const Text(
+                    "Pas de compte ?",
+                    style: kFormText,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Link("Crée-le !", () {}, kBigLink),
+                  )
+                ],
               )
-             
             ],
           ),
         ),

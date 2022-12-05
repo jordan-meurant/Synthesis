@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:synthesis/repository/authentication_repository.dart';
+import 'package:synthesis/repository/authentication_controller.dart';
 
 class SignUpController extends GetxController{
   // use it every where if need it
@@ -17,6 +17,6 @@ class SignUpController extends GetxController{
     AuthenticationController.instance
         .createUserWithEmailAndPassword(email, password)
         .then((value) => AuthenticationController.instance
-            .userSetup(lastName, firstName, phoneNo));
+            .userSetup('$firstName $lastName',email, phoneNo: phoneNo));
   }
 }

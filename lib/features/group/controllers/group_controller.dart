@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:synthesis/repository/authentication_repository.dart';
+import 'package:synthesis/repository/authentication_controller.dart';
 class GroupController {
   static GroupController get instance => Get.find();
 

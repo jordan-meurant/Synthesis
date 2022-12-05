@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:synthesis/repository/authentication_repository.dart';
+import 'package:synthesis/repository/authentication_controller.dart';
 class SignInController extends GetxController{
   static SignInController get instance => Get.find();
 

@@ -2,7 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:synthesis/links/link.dart';
+import 'package:synthesis/partials/buttons/icon_button.dart';
+import 'package:synthesis/partials/buttons/image_button.dart';
+import 'package:synthesis/partials/links/link.dart';
+import 'package:synthesis/repository/authentication_controller.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../utils/routes.dart';
@@ -56,6 +59,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                     TextFormField(
+                      obscureText: true,
                       controller: controller.password,
                       decoration: const InputDecoration(
                         label: Text("Mot de passe"),
@@ -79,38 +83,17 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(
                 height: 50,
               ),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton.icon(
-                  onPressed: () {
-                    if(formKey.currentState!.validate()){
-                      SignInController.instance.login(controller.email.text.trim(), controller.password.text.trim());
-                    }
-                  },
-                  icon: const Icon(FontAwesomeIcons.arrowRightToBracket),
-                  label: Text('Connexion',
-                      style: TextStyle(
-                          fontSize: 25,
-                          color: Theme.of(context).colorScheme.secondary)),
-                ),
-              ),
+              CustomIconButton(icon: const Icon(FontAwesomeIcons.arrowRightToBracket), title: 'Connexion',onPressed:() {
+                if (formKey.currentState!.validate()) {
+                  SignInController.instance.login(
+                      controller.email.text.trim(),
+                      controller.password.text.trim());
+                }
+              }),
               const OrDividerWidget(),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton.icon(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: CupertinoColors.white),
-                  icon: const Image(
-                    image: AssetImage("assets/img/google_logo.png"),
-                    height: 25,
-                  ),
-                  label: Text('Connexion avec Google',
-                      style: TextStyle(
-                          fontSize: 25,
-                          color: Theme.of(context).colorScheme.secondary)),
-                ),
-              ),
+              ImageButton(imageURL: 'assets/img/google_logo.png', title: 'Connexion avec Google',onPressed: (){
+                AuthenticationController.instance.signInWithGoogle();
+              }),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -134,3 +117,6 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
+
+
+
