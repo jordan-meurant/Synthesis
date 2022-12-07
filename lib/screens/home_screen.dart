@@ -9,6 +9,7 @@ import 'package:image_card/image_card.dart';
 import 'package:synthesis/constants/colors.dart';
 import 'package:synthesis/constants/text_strings.dart';
 import 'package:synthesis/controllers/group_controller.dart';
+import 'package:synthesis/screens/course_screen.dart';
 import 'package:synthesis/widgets/group_selection_btn_widget.dart';
 import 'package:synthesis/screens/group_options_screen.dart';
 import 'package:synthesis/partials/buttons/icon_button.dart';
@@ -110,15 +111,18 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
               CarouselSlider(
-                items: const [
-                  TransparentImageCard(
-                    endColor: CupertinoColors.systemYellow,
-                    width: double.infinity,
-                    imageProvider: NetworkImage(
-                        "https://learning.oilab.in/public/img/Flutter-course-in-jodhpur.png"),
-                    title: Text("Flutter"),
+                items:  [
+                  GestureDetector(
+                    onTap: (){Get.to(()=> const CourseScreen());},
+                    child: const TransparentImageCard(
+                      endColor: CupertinoColors.systemYellow,
+                      width: double.infinity,
+                      imageProvider: NetworkImage(
+                          "https://learning.oilab.in/public/img/Flutter-course-in-jodhpur.png"),
+                      title: Text("Flutter")
+                    ),
                   ),
-                  TransparentImageCard(
+                  const TransparentImageCard(
                     endColor: kPrimaryColor,
                     width: double.infinity,
                     imageProvider: NetworkImage(

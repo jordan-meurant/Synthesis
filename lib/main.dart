@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.dark,
       defaultTransition: Transition.rightToLeftWithFade,
       transitionDuration: const Duration(milliseconds: 400),
-      home: const CircularProgressIndicator(),
+      home: const Scaffold(body: Center(child: CircularProgressIndicator())),
     );
   }
 }

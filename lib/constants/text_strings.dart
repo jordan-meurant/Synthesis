@@ -60,5 +60,6 @@ const String kGroupCodeCopied = 'Code de groupe copié !';
 // Modal profile user
 const String kContactYourFriend = 'Contacte ton camarade via mail ou sonnes ui directement !';
 
-
-
+// create group screen
+const String kGroupName = 'Nom du groupe';
+const String kNoMood = 'Pas envie ?';

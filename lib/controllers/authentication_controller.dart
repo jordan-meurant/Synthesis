@@ -72,7 +72,9 @@ class AuthenticationController extends GetxController {
       'imageURL': imageURL ?? '/',
       'email': email ?? '/',
       'uid': firebaseUser.value?.uid.toString()
-    });
+    }).then((value) =>  _store.collection('Users').doc(user.uid).collection('groups').doc().set({'name' : 'dummy document'}));
+
+
   }
 
   Future<void> signInWithGoogle() async {

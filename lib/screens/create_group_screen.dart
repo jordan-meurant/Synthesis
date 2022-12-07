@@ -1,15 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:synthesis/constants/text_strings.dart';
+import 'package:synthesis/controllers/group_controller.dart';
 import 'package:synthesis/partials/buttons/icon_button.dart';
 import 'package:synthesis/partials/links/link.dart';
-import 'package:synthesis/widgets/or_divider_widget.dart';
 
 class CreateGroupScreen extends StatelessWidget {
   const CreateGroupScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.find<GroupController>();
+
     final formKey = GlobalKey<FormState>();
     return Scaffold(
       body: SafeArea(
@@ -19,7 +23,7 @@ class CreateGroupScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                "Crée un groupe !",
+                kCreateGroup,
                 style: Theme.of(context).textTheme.headline2,
                 textAlign: TextAlign.center,
               ),
@@ -28,15 +32,16 @@ class CreateGroupScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      "Utilises le code de groupe qu'on t'a filé pour rejoindre ce groupe",
+                      kUseGroupCode,
                       style: Theme.of(context).textTheme.bodyText1,
                     ),
                     const SizedBox(
                       height: 10,
                     ),
                     TextFormField(
+                      controller: controller.groupName,
                       decoration: const InputDecoration(
-                        label: Text("Nom du groupe"),
+                        label: Text(kGroupName),
                         prefixIcon: Icon(FontAwesomeIcons.peopleGroup),
                       ),
                     ),
@@ -48,20 +53,21 @@ class CreateGroupScreen extends StatelessWidget {
                 children: [
                   CustomIconButton(
                       icon: const Icon(FontAwesomeIcons.userPlus),
-                      title: "Créer ton groupe !",
-                      onPressed: () {}),
-
+                      title: kCreateGroup,
+                      onPressed: () {
+                        if (formKey.currentState!.validate()) {
+                          GroupController.instance.createGroup(controller.groupName.text.trim());
+                        } else {
+                          print("ERROR FORM CREATE GROUP");
+                        }
+                      }),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
-                        "Pas envie ?",
-                      ),
+                      const Text(kNoMood),
                       Padding(
                         padding: const EdgeInsets.only(left: 5),
-                        child: Link("Rejoins groupe !", () {
-
-                        }, ),
+                        child: Link(kJoinGroup, () {}),
                       )
                     ],
                   ),

@@ -30,14 +30,14 @@ class UserProfile {
   }
 
   static UserProfile fromSnapshot(DocumentSnapshot snapshot) {
-    var groupsId = snapshot['groups'] as List<String>;
+
     return UserProfile(
       id: snapshot['uid'],
       displayName: snapshot['displayName'],
       email: snapshot['email'],
       phoneNo: snapshot['phoneNo'],
       imageURL: snapshot['imageURL'],
-      groupsId: groupsId ?? [],
+      groupsId: [],
     );
   }
 }

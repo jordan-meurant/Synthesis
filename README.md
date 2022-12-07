@@ -63,17 +63,23 @@ réalisées vous pouvez clicker sur ce [lien](https://www.figma.com/proto/zMKzLa
 - En tant qu'**utilisateur connecté**, je peux télécharger une ressource d'un cours.
 - En tant qu'**utilisateur connecté**, j'ai accès aux ressources téléchargé en mode hors ligne.
 
+## TODO
+- [ ] Lister les groupes
+  - [ ] récupérer la liste d'id des groupes de l'utilisateur connecté
+  - [ ] récupérer les groupes sur base des ids obtenus
+- [ ] Cours
+  - [ ] formulaire pour ajouter un cours
+  - [ ] formulaire pour ajouter une ressource
+  - [ ] formulaire pour ajouter une note
+- [ ] Chat
+  - [ ] réaliser l'UI (voir package flyer chat)
+  - [ ] ajouter les collection/subcollections pour le chat
+  - ...
 
-Note : 
+
+Note :
 liens utils :
 - https://pub.dev/packages/dropdown_button2 (openWithLongPress)
 - https://pub.dev/packages/another_flushbar (flush_bar)
 - https://www.flutterbeads.com/flutter-internet-connection-checker/ (wifi?)
 - https://pub.dev/packages/avatars/install (avatar)
-
-
-Note : 
-Download -> tous les fichiers pdf qu'on peut télécharger
-
-
-firebase cloud storage

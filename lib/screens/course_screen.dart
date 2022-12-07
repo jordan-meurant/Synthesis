@@ -4,7 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:image_card/image_card.dart';
+import 'package:synthesis/partials/buttons/icon_button.dart';
+import 'package:synthesis/screens/profile_screen.dart';
+
+import '../profile_controller.dart';
 
 class CourseScreen extends StatefulWidget {
   const CourseScreen({Key? key}) : super(key: key);
@@ -21,7 +26,7 @@ class _CourseScreenState extends State<CourseScreen> {
       "https://avatars.githubusercontent.com/u/46026917?v=4",
       "LoicBourge"
     ];
-
+    final profileController = Get.find<ProfileController>();
     return Scaffold(
       body: SafeArea(
         minimum: const EdgeInsets.symmetric(horizontal: 25),
@@ -32,27 +37,28 @@ class _CourseScreenState extends State<CourseScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
+                mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ElevatedButton(
-                      onPressed: () {},
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(FontAwesomeIcons.arrowRightFromBracket),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Text(
-                              'Groupes',
-                              style: Theme.of(context).textTheme.headline5,
-                            ),
-                          )
-                        ],
-                      )),
-                  Avatar(sources: [
-                    NetworkSource(
-                        "https://learning.oilab.in/public/img/Flutter-course-in-jodhpur.png")
-                  ], name: "jordan", shape: AvatarShape.circle(25)),
+                  SizedBox(
+                      width: double.maxFinite,
+                      child: CustomIconButton(
+                          icon: const Icon(FontAwesomeIcons.backward),
+                          title: 'Groupes')),
+                  Obx(() => profileController.isLoading.value
+                      ? Avatar(
+                          onTap: () {
+                            Get.to(() => const ProfileScreen());
+                          },
+                          sources: [
+                            NetworkSource(
+                                profileController.userProfile.value?.imageURL ??
+                                    '')
+                          ],
+                          name:
+                              profileController.userProfile.value?.displayName,
+                          shape: AvatarShape.circle(25))
+                      : const CircularProgressIndicator())
                 ],
               ),
               const SizedBox(height: 10),
