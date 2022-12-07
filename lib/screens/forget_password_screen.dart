@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:synthesis/constants/text_strings.dart';
 import 'package:synthesis/utils/routes.dart';
-import '../../../../widgets/or_divider_widget.dart';
-import 'forget_password_btn_widget.dart';
+import '../widgets/or_divider_widget.dart';
+import '../widgets/modal_option_btn_widget.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
   const ForgetPasswordScreen({Key? key}) : super(key: key);
@@ -18,28 +19,27 @@ class ForgetPasswordScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Choisis une option !",
+            Text(kChooseOption,
                 style: Theme.of(context)
                     .textTheme
                     .headline3),
-            Text(
-              "Sélectionner une des options ci-dessous pour rénitialiser votre mot de passe",
+            Text(kSelectOptionBelow,
               style:
               Theme.of(context).textTheme.bodyText1,
             ),
             const SizedBox(
               height: 30,
             ),
-            ForgetPasswordBtnWidget(
-              title: "Email",
-              subTitle: "Réinitialisation par email",
+            ModalOptionBtnWidget(
+              title: kEmail,
+              subTitle: kResetByEmail,
               icon: FontAwesomeIcons.paperPlane,
               onTap: () {Navigator.pushNamed(context, resetPasswordByEmailScreen);},
             ),
             const OrDividerWidget(),
-            ForgetPasswordBtnWidget(
-                title: "N° de téléphone",
-                subTitle: "Pas encore disponible...",
+            ModalOptionBtnWidget(
+                title: kPhoneNo,
+                subTitle: kNotAvailabe,
                 icon: FontAwesomeIcons.commentSms,
                 onTap: () {})
           ],

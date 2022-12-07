@@ -2,16 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:synthesis/constants/text_strings.dart';
 import 'package:synthesis/partials/buttons/icon_button.dart';
 import 'package:synthesis/partials/buttons/image_button.dart';
 import 'package:synthesis/partials/links/link.dart';
-import 'package:synthesis/repository/authentication_controller.dart';
+import 'package:synthesis/controllers/authentication_controller.dart';
 
-import '../../../../constants/colors.dart';
-import '../../../../utils/routes.dart';
-import '../../../../widgets/or_divider_widget.dart';
-import '../../controllers/signin_controller.dart';
-import '../forget_password/forget_password_screen.dart';
+import '../constants/colors.dart';
+import '../utils/routes.dart';
+import '../widgets/or_divider_widget.dart';
+import '../controllers/signin_controller.dart';
+import 'forget_password_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -42,7 +43,7 @@ class LoginScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                "Connexion",
+                kLogin,
                 style: Theme.of(context).textTheme.headline2,
               ),
               Form(
@@ -54,7 +55,7 @@ class LoginScreen extends StatelessWidget {
                     TextFormField(
                       controller: controller.email,
                       decoration: const InputDecoration(
-                        label: Text("Email"),
+                        label: Text(kEmail),
                         prefixIcon: Icon(Icons.mail_rounded),
                       ),
                     ),
@@ -62,19 +63,19 @@ class LoginScreen extends StatelessWidget {
                       obscureText: true,
                       controller: controller.password,
                       decoration: const InputDecoration(
-                        label: Text("Mot de passe"),
+                        label: Text(kPassword),
                         prefixIcon: Icon(Icons.lock_open_rounded),
                       ),
                     ),
                     Align(
                       alignment: Alignment.bottomRight,
                       child: Link(
-                        "Mot de passe oublié ?",
+                        kForgetPassword,
                         () {
                           ForgetPasswordScreen.buildModalOptionsForgetPassword(
                               context);
                         },
-                        kBigLink,
+                        style: kBigLink,
                       ),
                     )
                   ],
@@ -83,29 +84,35 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(
                 height: 50,
               ),
-              CustomIconButton(icon: const Icon(FontAwesomeIcons.arrowRightToBracket), title: 'Connexion',onPressed:() {
-                if (formKey.currentState!.validate()) {
-                  SignInController.instance.login(
-                      controller.email.text.trim(),
-                      controller.password.text.trim());
-                }
-              }),
+              CustomIconButton(
+                  icon: const Icon(FontAwesomeIcons.arrowRightToBracket),
+                  title: kLogin,
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      SignInController.instance.login(
+                          controller.email.text.trim(),
+                          controller.password.text.trim());
+                    }
+                  }),
               const OrDividerWidget(),
-              ImageButton(imageURL: 'assets/img/google_logo.png', title: 'Connexion avec Google',onPressed: (){
-                AuthenticationController.instance.signInWithGoogle();
-              }),
+              ImageButton(
+                  imageURL: 'assets/img/google_logo.png',
+                  title: kGoogleLogin,
+                  onPressed: () {
+                    AuthenticationController.instance.signInWithGoogle();
+                  }),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    "Pas de compte ?",
+                    kDontHaveAccount,
                     style: kFormText,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 5),
-                    child: Link("Crée-le !", () {
+                    child: Link(kCreateIt, () {
                       Navigator.pushNamed(context, registerScreen);
-                    }, kBigLink),
+                    }, style: kBigLink),
                   )
                 ],
               ),
@@ -117,6 +124,3 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
-
-
-

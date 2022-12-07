@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ForgetPasswordBtnWidget extends StatelessWidget {
-  const ForgetPasswordBtnWidget({
+class ModalOptionBtnWidget extends StatelessWidget {
+  const ModalOptionBtnWidget({
     Key? key,
     required this.icon,
     required this.title,
@@ -31,12 +31,12 @@ class ForgetPasswordBtnWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Icon(icon, size: 50),
-            const SizedBox(width: 10),
+            const SizedBox(width: 20),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: Theme.of(context).textTheme.headline4),
-                Text(subTitle),
+                Text(title, style: Theme.of(context).textTheme.headline4, overflow: TextOverflow.ellipsis),
+                Text(subTitle, overflow: TextOverflow.ellipsis),
               ],
             )
           ],

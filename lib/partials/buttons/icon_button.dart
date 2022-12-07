@@ -14,11 +14,11 @@ class CustomIconButton extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton.icon(
-        onPressed: onPressed,
         icon: icon,
-        label: Text(title,
+        label: Text(title,overflow: TextOverflow.ellipsis,
             style: TextStyle(
                 fontSize: 25, color: Theme.of(context).colorScheme.secondary)),
+        onPressed: onPressed,
       ),
     );
   }

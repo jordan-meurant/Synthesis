@@ -6,28 +6,38 @@ class UserProfile {
   final String email;
   final String phoneNo;
   final String imageURL;
+  final List<String> groupsId;
 
-  UserProfile({
-    required this.id,
-    required this.displayName,
-    required this.email,
-    required this.phoneNo,
-    required this.imageURL,
-  });
+  UserProfile(
+      {required this.id,
+      required this.displayName,
+      required this.email,
+      required this.phoneNo,
+      required this.imageURL,
+      required this.groupsId});
 
-  static UserProfile fromJson(Map<String, dynamic> json) => UserProfile(
-        id: json['uid'] ?? '',
-        displayName: json['displayName'] ?? '',
-        email: json['email'] ?? '',
-        phoneNo: json['phoneNo'] ?? '',
-        imageURL: json['imageURL'] ?? '',
-      );
+  static UserProfile fromJson(Map<String, dynamic> json) {
+    var groupsId = json['groups'] as List<String>;
 
-  static UserProfile fromSnapshot(DocumentSnapshot snapshot) => UserProfile(
-        id: snapshot['uid'],
-        displayName: snapshot['displayName'],
-        email: snapshot['email'],
-        phoneNo: snapshot['phoneNo'],
-        imageURL: snapshot['imageURL'],
-      );
+    return UserProfile(
+      id: json['uid'] ?? '',
+      displayName: json['displayName'] ?? '',
+      email: json['email'] ?? '',
+      phoneNo: json['phoneNo'] ?? '',
+      imageURL: json['imageURL'] ?? '',
+      groupsId: groupsId ?? [],
+    );
+  }
+
+  static UserProfile fromSnapshot(DocumentSnapshot snapshot) {
+    var groupsId = snapshot['groups'] as List<String>;
+    return UserProfile(
+      id: snapshot['uid'],
+      displayName: snapshot['displayName'],
+      email: snapshot['email'],
+      phoneNo: snapshot['phoneNo'],
+      imageURL: snapshot['imageURL'],
+      groupsId: groupsId ?? [],
+    );
+  }
 }

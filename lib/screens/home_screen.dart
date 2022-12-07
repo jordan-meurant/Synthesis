@@ -7,12 +7,15 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:image_card/image_card.dart';
 import 'package:synthesis/constants/colors.dart';
-import 'package:synthesis/features/group/controllers/group_controller.dart';
-import 'package:synthesis/features/group/group_selection_btn_widget.dart';
+import 'package:synthesis/constants/text_strings.dart';
+import 'package:synthesis/controllers/group_controller.dart';
+import 'package:synthesis/widgets/group_selection_btn_widget.dart';
+import 'package:synthesis/screens/group_options_screen.dart';
+import 'package:synthesis/partials/buttons/icon_button.dart';
 import 'package:synthesis/profile_controller.dart';
-import 'package:synthesis/profile_screen.dart';
+import 'package:synthesis/screens/profile_screen.dart';
 
-import '../../../../widgets/or_divider_widget.dart';
+import '../../../widgets/or_divider_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -37,17 +40,16 @@ class HomeScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ElevatedButton(
-                    onPressed: () {},
-                    style:
-                        ElevatedButton.styleFrom(shape: const CircleBorder()),
-                    child: const Icon(FontAwesomeIcons.circlePlus),
-                  ),
+                  IconButton(
+                      onPressed: () {
+                        GroupOptionsScreen.buildModalOptionsJoinGroup(context);
+                      },
+                      icon: const Icon(FontAwesomeIcons.circlePlus),
+                      iconSize: 30),
                   const GroupSelectionBtnWidget(),
                   Obx(() => profileController.isLoading.value
                       ? Avatar(
                           onTap: () {
-                            //groupController.logout();
                             Get.to(() => const ProfileScreen());
                           },
                           sources: [
@@ -61,15 +63,19 @@ class HomeScreen extends StatelessWidget {
                       : const CircularProgressIndicator())
                 ],
               ),
+              const SizedBox(height: 50),
               Text(
-                "Groupe : $nameGroup",
+                "$kGroup : $nameGroup",
                 style: Theme.of(context).textTheme.headline3,
               ),
               const SizedBox(height: 10),
               ElevatedButton(
                   onPressed: () {
                     Clipboard.setData(ClipboardData(text: "yes"));
-                    Get.snackbar("Code de groupe copié !", "kmqfjmoqisfhmqsdkfh", snackPosition: SnackPosition.BOTTOM, margin: const EdgeInsets.all(10));
+                    // TODO take groupCode from firebase
+                    Get.snackbar(kGroupCodeCopied, "kmqfjmoqisfhmqsdkfh",
+                        snackPosition: SnackPosition.BOTTOM,
+                        margin: const EdgeInsets.all(10));
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -79,7 +85,7 @@ class HomeScreen extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(left: 10),
                         child: Text(
-                          'Code de group',
+                          kGroupCode,
                           style: TextStyle(
                               fontSize: 25,
                               color: Colors.white,
@@ -93,7 +99,7 @@ class HomeScreen extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "Cours",
+                    kCourses,
                     style: Theme.of(context).textTheme.headline4,
                   ),
                   ElevatedButton(
@@ -131,7 +137,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               Text(
-                "Participants :",
+                kParticipants,
                 style: Theme.of(context).textTheme.headline4,
               ),
               CarouselSlider(
@@ -169,34 +175,12 @@ class HomeScreen extends StatelessWidget {
                                           ),
                                           Text(
                                             textAlign: TextAlign.center,
-                                            "Contactes ton camarade via mail ou sonnes lui directement !",
+                                            kContactYourFriend,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .headline5,
                                           ),
-                                          ElevatedButton(
-                                              onPressed: () {},
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: const [
-                                                  Icon(FontAwesomeIcons
-                                                      .envelope),
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 10),
-                                                    child: Text(
-                                                        'jordan.meurant@student.hepl.be',
-                                                        style: TextStyle(
-                                                            fontSize: 20,
-                                                            color: Colors.white,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            fontFamily:
-                                                                'patrick')),
-                                                  )
-                                                ],
-                                              )),
+                                          CustomIconButton(icon: const Icon(FontAwesomeIcons.envelope), title: "jordan.meurant@student.hepl.be",onPressed: (){}),
                                           const OrDividerWidget(),
                                           OutlinedButton(
                                               style: OutlinedButton.styleFrom(

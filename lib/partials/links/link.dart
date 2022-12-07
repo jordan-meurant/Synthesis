@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 
+import '../../constants/styles.dart';
+
 class Link extends StatelessWidget {
   final String _text;
 
-  final TextStyle _style;
+  final TextStyle style;
 
-  const Link(this._text,this._onTap, this._style, {super.key});
+  const Link(this._text,this._onTap, {super.key,this.style = kBigLink});
 
   final GestureTapCallback _onTap;
 
@@ -15,7 +17,7 @@ class Link extends StatelessWidget {
       onTap: _onTap,
       child: Text(
         _text,
-       style: _style,
+       style: style,
       ),
     );
   }

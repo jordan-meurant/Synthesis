@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../../../../constants/colors.dart';
 
@@ -22,10 +23,10 @@ class OrDividerWidget extends StatelessWidget {
             child: Text(
               'ou',
               style: TextStyle(
-                fontFamily: "satisfy",
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-              ),
+                  fontFamily: "satisfy",
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                  color: kPrimaryColor),
             ),
           ),
           Flexible(

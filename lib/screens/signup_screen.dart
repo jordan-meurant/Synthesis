@@ -2,10 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:synthesis/features/authentication/controllers/signup_controller.dart';
+import 'package:synthesis/constants/text_strings.dart';
+import 'package:synthesis/controllers/signup_controller.dart';
+import 'package:synthesis/screens/login_screen.dart';
+import 'package:synthesis/partials/buttons/google_signin_button.dart';
 
 import '../../../../widgets/or_divider_widget.dart';
-import 'constants/colors.dart';
+import '../constants/colors.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -31,8 +34,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                "Inscription",
+              Text(kSignup,
                 style: Theme.of(context).textTheme.headline2,
               ),
               Form(
@@ -44,21 +46,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     TextFormField(
                       controller: controller.lastName,
                       decoration: const InputDecoration(
-                        label: Text("Nom"),
+                        label: Text(kLastName),
                         prefixIcon: Icon(Icons.person_outline),
                       ),
                     ),
                     TextFormField(
                       controller: controller.firstName,
                       decoration: const InputDecoration(
-                        label: Text("Prénom"),
+                        label: Text(kFirstName),
                         prefixIcon: Icon(Icons.person_outline),
                       ),
                     ),
                     TextFormField(
                       controller: controller.email,
                       decoration: const InputDecoration(
-                        label: Text("Email"),
+                        label: Text(kEmail),
                         prefixIcon: Icon(Icons.mail_rounded),
                       ),
                     ),
@@ -66,7 +68,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       keyboardType: TextInputType.phone,
                       controller: controller.phoneNo,
                       decoration: const InputDecoration(
-                        label: Text("Numéro de téléphone"),
+                        label: Text(kPhoneNo),
                         prefixIcon: Icon(Icons.phone),
                       ),
                     ),
@@ -74,7 +76,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       obscureText: true,
                       controller: controller.password,
                       decoration: const InputDecoration(
-                        label: Text("Mot de passe"),
+                        label: Text(kPassword),
                         prefixIcon: Icon(Icons.lock_open_rounded),
                       ),
                     ),
@@ -93,8 +95,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       });
                     },
                   ),
-                  const Text(
-                    "Accepter les termes & conditions",
+                  const Text(kTermsAndConditions,
                     textAlign: TextAlign.start,
                   ),
                 ],
@@ -115,8 +116,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     }
                   },
                   icon: const Icon(FontAwesomeIcons.userPlus),
-                  label: const Text(
-                    'Inscription',
+                  label: const Text(kSignup,
                     style: TextStyle(fontSize: 25, color: kPrimaryColor),
                   ),
                 ),
@@ -125,31 +125,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(()=> const LoginScreen());
+                  },
                   icon: const Icon(FontAwesomeIcons.arrowRightToBracket),
-                  label: Text('Connexion',
+                  label: Text(kLogin,
                       style: TextStyle(
                           fontSize: 25,
                           color: Theme.of(context).colorScheme.secondary)),
                 ),
               ),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton.icon(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: CupertinoColors.white),
-                  icon: const Image(
-                    image: AssetImage("assets/img/google_logo.png"),
-                    height: 25,
-                  ),
-                  label: Text('Connexion avec Google',
-                      style: TextStyle(
-                          fontSize: 25,
-                          color: Theme.of(context).colorScheme.secondary)),
-                ),
-              ),
-
+              const GoogleSignUpButton()
               // Note: Same code is applied for the TextFormField as well
             ],
           ),

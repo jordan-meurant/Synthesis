@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:synthesis/constants/colors.dart';
+import 'package:synthesis/partials/buttons/logout_button.dart';
 import 'package:synthesis/profile_controller.dart';
-import 'package:synthesis/repository/authentication_controller.dart';
+import 'package:synthesis/controllers/authentication_controller.dart';
+
+import '../constants/text_strings.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -43,35 +46,24 @@ class ProfileScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Numéro de téléphone : ${controller.userProfile.value?.phoneNo}',
+                        '$kPhoneNo : ${controller.userProfile.value?.phoneNo}',
                         style: Theme.of(context).textTheme.headline5,
                       ),
                       Text(
-                        'Email : ${controller.userProfile.value?.email}',
+                        '$kEmail : ${controller.userProfile.value?.email}',
                         style: Theme.of(context).textTheme.headline5,
                       ),
                     ],
                   ),
                   const SizedBox(height: 10),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton.icon(
-                      onPressed: () {
-                        AuthenticationController.instance.logout();
-                      },
-                      icon: const Icon(FontAwesomeIcons.doorOpen),
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: kLogoutBgColor),
-                      label: Text('Déconnexion',
-                          style: TextStyle(
-                              fontSize: 25,
-                              color: Theme.of(context).colorScheme.secondary)),
-                    ),
-                  ),
+                  const LogoutButton()
                 ],
               )
-            : CircularProgressIndicator()),
+            : const CircularProgressIndicator()),
       ),
     ));
   }
 }
+
+
+

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:synthesis/repository/authentication_controller.dart';
+import 'package:synthesis/controllers/authentication_controller.dart';
 
 class SignUpController extends GetxController{
   // use it every where if need it
