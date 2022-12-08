@@ -33,7 +33,7 @@ const String kTermsAndConditions = 'Accepter les termes & conditions';
 
 // Modal screen
 const String kChooseOption = 'Choisis une option !';
-const String kSelectOptionBelow = 'Choisis une option !';
+const String kSelectOptionBelow = 'Sélectionne une des options ci-dessous pour rénitialiser ton mot de passe';
 const String kResetByEmail = 'Réinitialisation par email';
 const String kNotAvailabe = 'Pas encore disponible';
 

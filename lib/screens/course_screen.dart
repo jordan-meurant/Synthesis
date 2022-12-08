@@ -41,10 +41,10 @@ class _CourseScreenState extends State<CourseScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
-                      width: double.maxFinite,
+                      width: 150,
                       child: CustomIconButton(
                           icon: const Icon(FontAwesomeIcons.backward),
-                          title: 'Groupes')),
+                          title: 'Groupes', onPressed: (){},)),
                   Obx(() => profileController.isLoading.value
                       ? Avatar(
                           onTap: () {

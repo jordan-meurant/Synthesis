@@ -63,6 +63,27 @@ réalisées vous pouvez clicker sur ce [lien](https://www.figma.com/proto/zMKzLa
 - En tant qu'**utilisateur connecté**, je peux télécharger une ressource d'un cours.
 - En tant qu'**utilisateur connecté**, j'ai accès aux ressources téléchargé en mode hors ligne.
 
+## Dépendances
+```yaml
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  liquid_swipe: ^3.0.0
+  smooth_page_indicator: ^1.0.0+2
+  font_awesome_flutter: ^10.2.1
+  carousel_slider: ^4.1.1
+  image_card: ^0.0.4
+  avatars: ^3.0.2
+  dropdown_button2: ^1.9.1
+  firebase_core: ^2.3.0
+  firebase_auth: ^4.1.5
+  get: ^4.6.5
+  firebase_core_platform_interface: 4.5.2
+  cloud_firestore: ^4.1.0
+  google_sign_in: ^5.4.2
+```
+
 ## TODO
 - [ ] Lister les groupes
   - [ ] récupérer la liste d'id des groupes de l'utilisateur connecté

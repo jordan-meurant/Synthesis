@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:synthesis/controllers/authentication_controller.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/text_strings.dart';
@@ -16,7 +17,9 @@ class LogoutButton extends StatelessWidget {
       child: OutlinedButton.icon(
           style: OutlinedButton.styleFrom(
               side: const BorderSide(color: kLogoutBgColor, width: 2)),
-          onPressed: () {},
+          onPressed: () {
+            AuthenticationController.instance.logout();
+          },
           icon: const Icon(FontAwesomeIcons.doorOpen, color: kLogoutBgColor,),
           label: const Text(kLogout,
               style: TextStyle(
