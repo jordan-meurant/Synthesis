@@ -84,23 +84,3 @@ dev_dependencies:
   google_sign_in: ^5.4.2
 ```
 
-## TODO
-- [ ] Lister les groupes
-  - [ ] récupérer la liste d'id des groupes de l'utilisateur connecté
-  - [ ] récupérer les groupes sur base des ids obtenus
-- [ ] Cours
-  - [ ] formulaire pour ajouter un cours
-  - [ ] formulaire pour ajouter une ressource
-  - [ ] formulaire pour ajouter une note
-- [ ] Chat
-  - [ ] réaliser l'UI (voir package flyer chat)
-  - [ ] ajouter les collection/subcollections pour le chat
-  - ...
-
-
-Note :
-liens utils :
-- https://pub.dev/packages/dropdown_button2 (openWithLongPress)
-- https://pub.dev/packages/another_flushbar (flush_bar)
-- https://www.flutterbeads.com/flutter-internet-connection-checker/ (wifi?)
-- https://pub.dev/packages/avatars/install (avatar)
