@@ -18,7 +18,7 @@ Le design de l'application a été réalisé à l'aide de l'outil
 [Figma](https://www.figma.com). Vous pouvez accéder au **mockup** de
 l'application via ce [lien](https://www.figma.com/file/zMKzLaDnktYNdJXcdXekuK/Synthesis?node-id=0%3A1).
 
-
+### v1
 <p float="left">
   <img src="resourcesREADME/Home1.png" width="200" />
   <img src="resourcesREADME/Home2.png" width="200" /> 
@@ -38,6 +38,18 @@ l'application via ce [lien](https://www.figma.com/file/zMKzLaDnktYNdJXcdXekuK/Sy
   <img src="resourcesREADME/Chat.png" width="200" />
   <img src="resourcesREADME/RessourceExample.png" width="200" /> 
   <img src="resourcesREADME/ParticipantExample.png" width="200" />
+</p>
+
+### v2
+<p float="left">
+  <img src="resourcesREADME/home.png" width="200" />
+  <img src="resourcesREADME/home1.png" width="200" /> 
+  <img src="resourcesREADME/home2.png" width="200" />
+</p>
+<p float="left">
+  <img src="resourcesREADME/home3.png" width="200" />
+   <img src="resourcesREADME/connexionv2.png" width="200" /> 
+  <img src="resourcesREADME/inscriptionv2.png" width="200" />
 </p>
 
 ## Site Map
