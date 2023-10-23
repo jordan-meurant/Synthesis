@@ -52,6 +52,10 @@ l'application via ce [lien](https://www.figma.com/file/zMKzLaDnktYNdJXcdXekuK/Sy
   <img src="resourcesREADME/inscriptionv2.png" width="200" />
 </p>
 
+<p float="left">
+  <img src="resourcesREADME/chooseoptionv2.png" width="200" />
+</p>
+
 ## Site Map
 La carte de l'application a également été réalisé avec [Figma](https://www.figma.com). Voici ci-dessous l'ensemble des
 intéractions possible au sein de l'application. Afin d'**intéragir** avec les maquettes
